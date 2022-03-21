@@ -33,14 +33,14 @@ mov     w23, wzr                                //zero w23 register
 
 sinner:
 ldr     w0, [x27]                               //load value of LINES into w0
-cmp     w23, w0                                 //compare if w23 is greater then or equal to w0 if so then branch to binner
+cmp     w0, w23                                 //compare if w23 is greater then or equal to w0 if so then branch to binner
 bge     bottom                                  //^   
 fmov    d21, d28                                //move zero double register d28 to double d21
 mov     w24, wzr                                //zero register w24
 
 tinner:
 ldr     w0, [x26]                               //load COLS into w0
-cmp     w24, w0                                 //compare if w24 is greater then or equal to 20 if so then branch to binner
+cmp     w0, w24                                 //compare if w24 is greater then or equal to 20 if so then branch to binner
 bge     binner                                  //^
 
 fadd    d0, d20, d21
@@ -66,7 +66,8 @@ add     w23, w23, 1                             //increment w23 by 1
 b       sinner
 
 bottom:
-ldr     x0, =stdscr                             //gets pointer to stdscr store int scratch x0                
+ldr     x3, =stdscr                             //gets pointer to stdscr store int scratch x0     
+ldr     x0, [x3]           
 mov     x1, xzr                                 //zero x1 and x2
 mov     x2, xzr                                 //^
 bl      box                                     //run ncurse box function

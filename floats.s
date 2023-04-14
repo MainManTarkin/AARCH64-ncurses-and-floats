@@ -28,6 +28,8 @@ fmov    x22, d22                                //take value from floating reg a
 
 top:
 bl      erase                                   //erase screen
+mov	x0, xzr
+bl	curs_set
 fmov    d20, x20                                //get x20 and x22 doubles and move them into there floating point regs for fadd
 fmov    d22, x22                                //^
 fadd    d20, d20, d22                           //float add d20 and d22 place into d20
